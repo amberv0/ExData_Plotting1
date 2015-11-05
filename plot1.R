@@ -1,0 +1,6 @@
+setClass('myDate')
+setAs("character","myDate", function(from) as.Date(from, format="%d/%m/%Y") )
+data <- subset(read.csv("./household_power_consumption.txt", sep=";", na.strings="?", colClasses = c("Date" = "myDate")), Date >= "2007/02/01" & Date <= "2007/02/02")
+png(filename = "plot1.png", width = 480, height = 480, units = "px", bg ="transparent")
+hist(data$Global_active_power, col="red", xlab = "Global Active Power (kilowatts)", ylab = "Frequency", main = "Global Active Power")
+dev.off()
